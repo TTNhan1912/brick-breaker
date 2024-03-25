@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using UnityEngine;
-using UnityEngine.SocialPlatforms;
-using UnityEngine.UIElements;
+﻿using UnityEngine;
 
 public class MenuSelector : VerticalMenuSelector
 {
@@ -12,6 +6,7 @@ public class MenuSelector : VerticalMenuSelector
     private readonly string MENU_OPTION_START = "MenuOptionStart";
     private readonly string MENU_OPTION_INSTRUCTIONS = "MenuOptionInstructions";
     private readonly string MENU_OPTION_OPTIONS = "MenuOptionOptions";
+    private readonly string LEVEL_OPTIONS = "LevelOptions";
 
     /**
      * Before first frame update. 
@@ -28,11 +23,11 @@ public class MenuSelector : VerticalMenuSelector
     {
         // invokes base class up/down arrows handling
         this.HandleUpDownArrowPresses();
-        
+
         // enter case handling
         if (Input.GetKeyDown(KeyCode.Return)) HandleReturn();
     }
-    
+
     /**
      * Handles ENTER pressing that allows the user to choose an option.
      */
@@ -40,16 +35,16 @@ public class MenuSelector : VerticalMenuSelector
     {
         var currentMenu = this.GetCurrentMenu();
 
-        if (currentMenu.name == MENU_OPTION_START) 
-            this.sceneLoader.LoadSceneByName("Level1");
-        
-        else if (currentMenu.name == MENU_OPTION_INSTRUCTIONS) 
-            this.sceneLoader.LoadSceneByName("InstructionsMenu");
-        
-        else if (currentMenu.name == MENU_OPTION_OPTIONS) 
-            this.sceneLoader.LoadSceneByName("OptionsMenu");
+        if (currentMenu.name == MENU_OPTION_START)
+            this.sceneLoader.LoadSceneByName("Level" + PlayerPrefs.GetInt("level"));
 
-        else 
+        else if (currentMenu.name == MENU_OPTION_INSTRUCTIONS)
+            this.sceneLoader.LoadSceneByName("InstructionsMenu");
+
+        else if (currentMenu.name == MENU_OPTION_OPTIONS)
+            this.sceneLoader.LoadSceneByName("LevelOptions");
+
+        else
             this.sceneLoader.Quit();
     }
 }

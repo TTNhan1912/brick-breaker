@@ -8,6 +8,13 @@ TagManager:
   - Unbreakable
   - Transparent
   - MenuOptionWithChild
+  - itemDrop
+  - Paddle
+  - LoseCollider
+  - ItemHealth
+  - ItemGear
+  - ItemBottle
+  - ItemPotion
   layers:
   - Default
   - TransparentFX

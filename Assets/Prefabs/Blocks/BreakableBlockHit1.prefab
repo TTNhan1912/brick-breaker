@@ -102,6 +102,7 @@ MonoBehaviour:
   maxHits: 1
   damageSprites:
   - {fileID: 21300000, guid: 8101adfa1bfe540579607d0846c44a1c, type: 3}
+  dropManager: {fileID: 0}
 --- !u!61 &8946811745996912619
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@
 
 public class Block : MonoBehaviour
 {
-    
+
     // configuration
     [SerializeField] public AudioClip destroyedBlockSound;
     [SerializeField] public float soundVolume = 0.05f;
@@ -10,13 +10,16 @@ public class Block : MonoBehaviour
     [SerializeField] public int maxHits;
     [SerializeField] public Sprite[] damageSprites;
 
+    //new
+    public DropManager dropManager;
+
     // references to other objects
     private LevelController _levelController;
     private Vector3 _soundPosition;
 
     // state
     private int _currentHits = 0;
-    
+
     void Start()
     {
         // selects other game object without SCENE binding: programatically via API
@@ -26,17 +29,17 @@ public class Block : MonoBehaviour
         // increment the block counter if the block's breakable
         if (CompareTag("Breakable")) _levelController.IncrementBlocksCounter();
     }
-    
+
     /**
      * Destroys the block upon a collision. 
      */
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (!CompareTag("Breakable")) return;
-        
+
         // increases number of hits and destroy it, if necessary
         _currentHits++;
-            
+
         if (_currentHits < maxHits)
         {
             // Updates sprite image if block has taken too much damage
@@ -44,10 +47,10 @@ public class Block : MonoBehaviour
         }
         else
         {
-            DestroyItself();    
+            DestroyItself();
         }
     }
-    
+
     /**
      * Updates the block damage sprite when necessary based on the amount of taken hits.
      */
@@ -57,14 +60,14 @@ public class Block : MonoBehaviour
 
         this.gameObject.GetComponent<SpriteRenderer>().sprite = damageSprites[ix];
     }
-    
+
     /**
      * Calculates the number of required hits to change to the next damage sprite and based on that,
      * returns the sprite damage index of the sprites array for appropriate rendering.
      */
     private int GetDamageSpriteIndex(int currentHits, int totalHits, int numberOfDamageSprites)
     {
-        var numberOfRequiredHitsToChangeSprite = totalHits/numberOfDamageSprites;
+        var numberOfRequiredHitsToChangeSprite = totalHits / numberOfDamageSprites;
         var damageSpriteIndex = currentHits / numberOfRequiredHitsToChangeSprite;
 
         // returns the right dmg sprite or the last one
@@ -74,7 +77,7 @@ public class Block : MonoBehaviour
         }
         return numberOfDamageSprites - 1;
     }
-    
+
 
     /**
      * Upon a collision, the block must be destroyed. Once a block is destroyed, the blocks counter
@@ -85,7 +88,7 @@ public class Block : MonoBehaviour
      *  score = baseBlockValue * maxHits
      *
      * Hence, a block that takes 3 hits gives 3x more points than one that takes one hit.
-     */    
+     */
     private void DestroyItself()
     {
         // adds player points
@@ -97,6 +100,21 @@ public class Block : MonoBehaviour
 
         // increments destroyed blocks of the level
         _levelController.DecrementBlocksCounter();
+
+        //  Debug.Log("Destroy Block");
+
+        int index = Random.Range(0, 2);
+        if (index == 0)
+        {
+            ItemRanDome();
+
+        }
+    }
+
+    private void ItemRanDome()
+    {
+        int itemClone = Random.Range(0, dropManager.listDropItem.Count);
+        Instantiate(dropManager.listDropItem[itemClone], transform.position, Quaternion.identity);
     }
 
     /**
@@ -120,7 +138,7 @@ public class Block : MonoBehaviour
         // using Unity's API to instantiate a new GameObject -- the particles VFX
         Vector3 blockPosition = this.transform.position;
         Quaternion blockRotation = this.transform.rotation;
-        
+
         GameObject destroyedBlockParticles = Instantiate(destroyedBlockParticlesVFX, blockPosition, blockRotation);
     }
 }

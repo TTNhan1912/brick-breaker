@@ -1,41 +1,74 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-   // loads next scene based on the scene ordering defined on Unity > build settings
-   public void LoadNextScene()
-   {
-      int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-      SceneManager.LoadScene(currentSceneIndex + 1);
-   }
+    // loads next scene based on the scene ordering defined on Unity > build settings
+    public int currentSceneIndex;
 
-   // loads scene by its name
-   public void LoadSceneByName(string sceneName)
-   {
-      SceneManager.LoadScene(sceneName: sceneName);
-   }
 
-   // always the 0 indexed scene
-   public void LoadStartScene()
-   {
-      // FindObjectOfType<GameState>().ResetState();
-      SceneManager.LoadScene(0);
-   }
+    public void LoadNextScene()
+    {
 
-   public void Quit()
-   {
-      Application.Quit();
-   }
 
-   /**
-    * Hides the mouse cursor.
-    */
-   public void Start()
-   {
-      Cursor.visible = false;
-   }
+        Debug.Log(" 1 " + (PlayerPrefs.GetInt("level")));
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (PlayerPrefs.GetInt("level") < 40)
+        {
+            PlayerPrefs.SetInt("level", currentSceneIndex - 1);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
+            return;
+        }
+
+
+        Debug.Log(" 2 " + (PlayerPrefs.GetInt("level")));
+
+        SceneManager.LoadScene(currentSceneIndex + 1);
+
+
+
+        //  levelController.AddStarAndUnlockScene();
+
+        //        saveDataManager.SaveData();
+    }
+
+    // loads scene by its name
+    public void LoadSceneByName(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName: sceneName);
+    }
+
+    // always the 0 indexed scene
+    public void LoadStartScene()
+    {
+        // FindObjectOfType<GameState>().ResetState();
+        int level = PlayerPrefs.GetInt("level");
+
+        SceneManager.LoadScene(level);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    /**
+     * Hides the mouse cursor.
+     */
+    public void Start()
+    {
+        Cursor.visible = false;
+
+        //PlayerPrefs.SetInt("level", 1);
+
+        Debug.Log(" Level : " + PlayerPrefs.GetInt("level"));
+
+    }
+
+
+
 }
