@@ -28,6 +28,8 @@ public class Block : MonoBehaviour
 
         // increment the block counter if the block's breakable
         if (CompareTag("Breakable")) _levelController.IncrementBlocksCounter();
+
+
     }
 
     /**
@@ -39,7 +41,6 @@ public class Block : MonoBehaviour
 
         // increases number of hits and destroy it, if necessary
         _currentHits++;
-
         if (_currentHits < maxHits)
         {
             // Updates sprite image if block has taken too much damage
@@ -94,12 +95,14 @@ public class Block : MonoBehaviour
         // adds player points
         var gameState = FindObjectOfType<GameSession>();  // singleton
         gameState.AddToPlayerScore(maxHits);
-
         // plays VFX and SFX for the destruction
         PlayDestructionEffects();
 
         // increments destroyed blocks of the level
         _levelController.DecrementBlocksCounter();
+
+        // --- new code ----
+
 
         //  Debug.Log("Destroy Block");
 
@@ -115,6 +118,7 @@ public class Block : MonoBehaviour
     {
         int itemClone = Random.Range(0, dropManager.listDropItem.Count);
         Instantiate(dropManager.listDropItem[itemClone], transform.position, Quaternion.identity);
+
     }
 
     /**
@@ -127,7 +131,8 @@ public class Block : MonoBehaviour
 
         // plays destroyed block sound SFX
         AudioSource.PlayClipAtPoint(destroyedBlockSound, _soundPosition, soundVolume);
-        Destroy(this.gameObject);
+        //  Destroy(this.gameObject);
+        gameObject.SetActive(false);
     }
 
     /**

@@ -8,7 +8,7 @@ public class Ball : MonoBehaviour
     private const int MOUSE_PRIMARY_BUTTON = 0;
 
     // fields
-    [SerializeField] private Vector2 initialBallSpeed = new Vector2(4f, 15f);
+    [SerializeField] public Vector2 initialBallSpeed = new Vector2(4f, 15f);
     [SerializeField] private float bounceRandomnessFactor = 0.5f;
     [SerializeField] private AudioClip[] bumpAudioClips;
 
@@ -18,7 +18,6 @@ public class Ball : MonoBehaviour
     public Rigidbody2D _rigidBody2D;
     private AudioSource _audioSource;
     private Vector2 effectVelocity;
-    private bool effect;
     private int stackSlow;
 
     // properties
@@ -50,16 +49,18 @@ public class Ball : MonoBehaviour
             var paddlePosition = _paddle.transform.position;
 
             FixBallOnTopOfPaddle(paddlePosition, _initialDistanceToTopOfPaddle);
+
+
             ShootBallOnClick(initialBallSpeed + effectVelocity, hasMouseClick);
         }
 
-        if (HasBallBeenShot)
-        {
-            var hasMouseClick = Input.GetMouseButtonDown(MOUSE_PRIMARY_BUTTON);
+        /* if (HasBallBeenShot)
+         {
+             var hasMouseClick = Input.GetMouseButtonDown(MOUSE_PRIMARY_BUTTON);
 
-            ShootBallOnClick(initialBallSpeed + effectVelocity, hasMouseClick);
+             ShootBallOnClick(initialBallSpeed + effectVelocity, hasMouseClick);
 
-        }
+         }*/
 
     }
 
@@ -69,6 +70,8 @@ public class Ball : MonoBehaviour
     public void FixBallOnTopOfPaddle(Vector2 paddlePosition, Vector2 distanceToPaddle)
     {
         transform.position = paddlePosition + distanceToPaddle;
+
+
     }
 
     /**
@@ -131,7 +134,6 @@ public class Ball : MonoBehaviour
     public void SlowSpeed()
     {
         stackSlow++;
-        effect = true;
         stackSlow = stackSlow >= 5 ? 5 : stackSlow;
 
         Debug.LogError($"SlowSpeed effectVelocity : {effectVelocity}");

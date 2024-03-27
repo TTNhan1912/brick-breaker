@@ -1,12 +1,12 @@
 ﻿using System;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class MenuOptionsSelector : VerticalMenuSelector
 {
     // configuration
     [SerializeField] public TextMeshProUGUI gameModeText;
-    
+
     // status
     private readonly string MENU_OPTION_BACK = "MenuOptionBack";
     private readonly string MENU_OPTION_GAME_MODE = "MenuOptionMode";
@@ -15,7 +15,7 @@ public class MenuOptionsSelector : VerticalMenuSelector
     private GameConfig _gameConfig;
     private readonly string[] _gameModes = GameConfig.AllowedGameModes;
     private int _selectedGameModeIndex = 0;
-    
+
     /**
      * Before first frame update.
      */
@@ -23,13 +23,13 @@ public class MenuOptionsSelector : VerticalMenuSelector
     {
         this._gameConfig = GameConfig.Instance;  // singleton
         var configGameMode = this._gameConfig.GameMode;
-        
+
         // selector current position
         transform.position = GetMenuSelectorPosition();
-        
+
         // option based on game config
         this._selectedGameModeIndex = GetGameModeIndex(configGameMode);
-        gameModeText.text = this._gameModes[this._selectedGameModeIndex];
+        // gameModeText.text = this._gameModes[this._selectedGameModeIndex];
     }
 
     /**
@@ -39,19 +39,19 @@ public class MenuOptionsSelector : VerticalMenuSelector
     {
         // up and down selection is always allowed
         this.HandleUpDownArrowPresses();
-        
+
         // left and right selection only for the 'game mode' option of the menu
-        if (this.GetCurrentMenu().name == this.MENU_OPTION_GAME_MODE) 
+        if (this.GetCurrentMenu().name == this.MENU_OPTION_GAME_MODE)
             this.HandleLeftRightArrowPresses();
-        
+
         // ENTER is only allowed for the 'back' option of the menu
         // also sets the current game mode option on the game config instance
         if (this.GetCurrentMenu().name == this.MENU_OPTION_BACK)
         {
-            this.HandleReturn();            
+            this.HandleReturn();
         }
     }
-    
+
     /**
      * Handles ENTER from users. The only ENTER option supported is for the 'back' option which leads
      * the user back to the start menu scene.
@@ -77,14 +77,14 @@ public class MenuOptionsSelector : VerticalMenuSelector
             this._selectedGameModeIndex++;
             UpdateGameModeText();
         }
-            
-        
+
+
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             this._selectedGameModeIndex--;
             UpdateGameModeText();
         }
-        
+
     }
 
     /**
@@ -93,7 +93,7 @@ public class MenuOptionsSelector : VerticalMenuSelector
     private void UpdateGameModeText()
     {
         var maxOptionIndex = this._gameModes.Length - 1;
-        
+
         this._selectedGameModeIndex = Mathf.Clamp(_selectedGameModeIndex, 0, maxOptionIndex);
         gameModeText.text = GetSelectedGameMode();
     }

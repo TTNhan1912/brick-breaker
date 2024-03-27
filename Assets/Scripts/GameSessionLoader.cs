@@ -13,7 +13,7 @@ public class GameSessionLoader : MonoBehaviour
     {
         this._gameSession = GameSession.Instance;
         this._gameConfig = GameConfig.Instance;
-        StartGameSession();
+        // StartGameSession();
     }
 
     /**
@@ -30,6 +30,14 @@ public class GameSessionLoader : MonoBehaviour
         this._gameSession.PlayerScore = (int)gameModeConfig["playerScore"];
         this._gameSession.GameLevel = (int)gameModeConfig["gameLevel"];
 
-        Debug.Log(this._gameSession.GameLevel);
+    }
+    public void StartGameSession2(int live, float speed, int level)
+    {
+        var gameModeConfig = this._gameConfig.GetGameModeConfig();
+
+        this._gameSession.PlayerLives = live;
+        this._gameSession.GameSpeed = speed;
+        this._gameSession.GameLevel = level;
+        this._gameSession.PlayerScore = (int)gameModeConfig["playerScore"];
     }
 }

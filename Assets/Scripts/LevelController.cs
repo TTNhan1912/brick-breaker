@@ -5,6 +5,8 @@ public class LevelController : MonoBehaviour
     private readonly string GAME_OVER_SCENE_NAME = "Scenes/GameOver";
     private readonly int NUMBER_OF_GAME_LEVELS = 40;
 
+    public LoadDataLevel loadDataLevel;
+    public Ball ball;
 
     // UI elements
     [SerializeField] int blocksCounter;
@@ -25,9 +27,8 @@ public class LevelController : MonoBehaviour
 
     public void DecrementBlocksCounter()
     {
-        blocksCounter--;
-
-        if (blocksCounter <= 0)
+        loadDataLevel.blockLevel--;
+        if (loadDataLevel.blockLevel <= 0)
         {
             var gameSession = GameSession.Instance;
 
@@ -37,13 +38,18 @@ public class LevelController : MonoBehaviour
                 _sceneLoader.LoadSceneByName(GAME_OVER_SCENE_NAME);
             }
 
-            // increases game level
-            gameSession.GameLevel++;
+            // int level = PlayerPrefs.GetInt("level");
+            // level++;
 
-
-            _sceneLoader.LoadNextScene();
-
+            loadDataLevel.levelScene++;
+            PlayerPrefs.SetInt("Level-Scene", loadDataLevel.levelScene);
+            loadDataLevel.CheckData();
+            ball.FixBallOnTopOfPaddle(new Vector2(8.7f, 0.6f), new Vector2(-0.1f, 0.9f));
+            ball.InitialBallSpeed = new Vector2(0, 0);
+            Debug.Log(ball.InitialBallSpeed);
         }
+
+
     }
 
 

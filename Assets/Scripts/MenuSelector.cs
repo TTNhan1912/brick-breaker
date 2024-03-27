@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuSelector : VerticalMenuSelector
 {
@@ -14,6 +15,9 @@ public class MenuSelector : VerticalMenuSelector
     void Start()
     {
         transform.position = GetMenuSelectorPosition();
+
+        Debug.Log("Level Current : " + PlayerPrefs.GetInt("Level-Scene"));
+
     }
 
     /**
@@ -36,7 +40,7 @@ public class MenuSelector : VerticalMenuSelector
         var currentMenu = this.GetCurrentMenu();
 
         if (currentMenu.name == MENU_OPTION_START)
-            this.sceneLoader.LoadSceneByName("Level" + PlayerPrefs.GetInt("level"));
+            SceneManager.LoadScene(3);
 
         else if (currentMenu.name == MENU_OPTION_INSTRUCTIONS)
             this.sceneLoader.LoadSceneByName("InstructionsMenu");

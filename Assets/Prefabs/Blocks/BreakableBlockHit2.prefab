@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8946811745996912617}
   - component: {fileID: 8946811745996912622}
   - component: {fileID: 8946811745996912619}
+  - component: {fileID: 7881084311254216625}
   m_Layer: 0
   m_Name: BreakableBlockHit2
   m_TagString: Breakable
@@ -103,6 +104,7 @@ MonoBehaviour:
   damageSprites:
   - {fileID: 21300000, guid: 8101adfa1bfe540579607d0846c44a1c, type: 3}
   - {fileID: 21300000, guid: 9bad229c980bb4e639ea68b2b21f5998, type: 3}
+  dropManager: {fileID: 7881084311254216625}
 --- !u!61 &8946811745996912619
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -129,3 +131,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7881084311254216625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8946811745996912623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06578bfc5fda86742a783e54b9b2a870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listDropItem:
+  - {fileID: 5516253645406542287, guid: af408a391fb1f30498ae98dddad42950, type: 3}
+  - {fileID: 420601727297607115, guid: c3f5d290e39ae4a4d9ced04cc3f5d816, type: 3}
+  - {fileID: 2714666988385823446, guid: 520eb482764a85741bb1e965357d38d2, type: 3}
+  - {fileID: 8185730391965615026, guid: 4a1ceb101e06fcd4182775abb1b74ae7, type: 3}

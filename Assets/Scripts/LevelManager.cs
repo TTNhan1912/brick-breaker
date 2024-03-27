@@ -17,12 +17,11 @@ public class LevelManager : MonoBehaviour
     private int count = 5;
     private bool isIncreasing = true;
     public int levelCurrent = 0;
-    public int star;
 
     public ScrollRect myScrollRect;
-    public Scrollbar newScrollBar;
 
     public LevelPrefab levelPrefab;
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,10 +31,8 @@ public class LevelManager : MonoBehaviour
         AddLine();
         ScrollLevel();
 
-        Debug.Log(PlayerPrefs.GetInt("level"));
         LoadDataStarAndLock();
         LoadTextStar();
-
 
     }
 
@@ -51,7 +48,6 @@ public class LevelManager : MonoBehaviour
 
     public void CreateLevel()
     {
-
         for (int i = 0; i < _maxLevel; i++)
         {
             LevelPrefab level = Instantiate(levelPrefab, Vector3.zero, Quaternion.identity);
@@ -61,38 +57,36 @@ public class LevelManager : MonoBehaviour
             if (i == 0)
             {
                 level.transform.GetChild(4).GetComponent<Image>().gameObject.SetActive(true);
+
                 level.GetComponent<Button>().onClick.AddListener(() =>
                 {
+                    PlayerPrefs.SetInt("Level-Scene", 1);
                     SceneManager.LoadScene(3);
                 });
             }
             else
             {
-                level.transform.GetChild(3).GetComponent<TMP_Text>().text += valueToAdd; // 2 - 3 - 4 - 8 
-                int levelNumber = valueToAdd;  // 2 - 3 - 4 - 8 
+                level.transform.GetChild(3).GetComponent<TMP_Text>().text += valueToAdd;
+                int levelNumber = valueToAdd;
 
                 level.GetComponent<Button>().onClick.AddListener(() =>
                 {
-                    Debug.Log("Level : " + levelNumber);
-                    if (PlayerPrefs.GetInt("level") >= levelNumber)
-                    {
-                        SceneManager.LoadScene(levelNumber + 2);
-
-                    }
+                    PlayerPrefs.SetInt("Level-Scene", levelNumber);
+                    SceneManager.LoadScene(3);
                 });
 
                 if (isIncreasing)
                 {
-                    valueToAdd++; // 3 - 4 - 5 
-                    if (valueToAdd == count)  // 5 == 5
+                    valueToAdd++;
+                    if (valueToAdd == count)
                     {
                         isIncreasing = false;
-                        valueToAdd += 3; // 5-> 8
+                        valueToAdd += 3;
                     }
                 }
                 else
                 {
-                    valueToAdd--; // text 7 
+                    valueToAdd--;
                     if (valueToAdd == count - 1)
                     {
                         isIncreasing = true;
@@ -137,7 +131,7 @@ public class LevelManager : MonoBehaviour
         bool isLevel = true;
         int countThuHai = 4;
 
-        for (int i = 0; i < PlayerPrefs.GetInt("level") - 1; i++)
+        for (int i = 0; i < PlayerPrefs.GetInt("Level-Scene") - 1; i++)
         {
             listLevel[levelCurrent].transform.GetChild(0).GetComponent<Image>().gameObject.SetActive(true); // sao
 
@@ -174,62 +168,20 @@ public class LevelManager : MonoBehaviour
 
     private void LoadTextStar()
     {
-        text_Star.text += ((PlayerPrefs.GetInt("level") - 1) * 3).ToString();
+        text_Star.text += ((PlayerPrefs.GetInt("Level-Scene") - 1) * 3).ToString();
     }
 
     private void ScrollLevel()
     {
-        int level = PlayerPrefs.GetInt("level");
-        float position = 0f;
+        int level = PlayerPrefs.GetInt("Level-Scene");
+        float position = (level * 100) / _maxLevel;
+        myScrollRect.verticalNormalizedPosition = position / 100;
 
-        if (level > 36)
-        {
-            myScrollRect.verticalNormalizedPosition = 1f;
-        }
-        else
-        {
-            if (level >= 33)
-            {
-                position = 0.9f;
-            }
-            else if (level >= 29)
-            {
-                position = 0.8f;
-            }
-            else if (level >= 25)
-            {
-                position = 0.7f;
-            }
-            else if (level >= 21)
-            {
-                position = 0.6f;
-            }
-            else if (level >= 17)
-            {
-                position = 0.5f;
-            }
-            else if (level >= 13)
-            {
-                position = 0.4f;
-            }
-            else if (level >= 9)
-            {
-                position = 0.2f;
-            }
-            else if (level >= 5)
-            {
-                position = 0.1f;
-            }
-
-            myScrollRect.verticalNormalizedPosition = position;
-
-        }
     }
-
 
     private void ResetLevel()
     {
-        PlayerPrefs.SetInt("level", 1);
+        PlayerPrefs.SetInt("Level-Scene", 1);
     }
 
     public void BackHome()

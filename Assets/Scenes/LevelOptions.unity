@@ -384,8 +384,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 991803369}
   m_HandleRect: {fileID: 991803367}
   m_Direction: 2
-  m_Value: 0.0015771706
-  m_Size: 0.21495478
+  m_Value: 0.000008326922
+  m_Size: 0.20520067
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -622,36 +622,8 @@ MonoBehaviour:
   newScrollBar: {fileID: 0}
   levelPrefab: {fileID: 8549626066066020036, guid: 6ac2af4ed45d03f4fb69c8fbfb9fbd89,
     type: 3}
---- !u!1 &444228503
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 444228504}
-  m_Layer: 0
-  m_Name: SaveData
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &444228504
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 444228503}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8630306, y: 3.7325058, z: -0.19335938}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  dataManager: {fileID: 0}
+  loadDataLevel: {fileID: 0}
 --- !u!1 &451021748
 GameObject:
   m_ObjectHideFlags: 0
@@ -1927,8 +1899,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 2912}
-  m_SizeDelta: {x: 0, y: 3715.2}
+  m_AnchoredPosition: {x: 0, y: 3093.1743}
+  m_SizeDelta: {x: 0, y: 3891.8}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1568789518
 MonoBehaviour:
@@ -2308,6 +2280,8 @@ MonoBehaviour:
   newScrollBar: {fileID: 249848065}
   levelPrefab: {fileID: 8549626066066020036, guid: 6ac2af4ed45d03f4fb69c8fbfb9fbd89,
     type: 3}
+  dataManager: {fileID: 0}
+  loadDataLevel: {fileID: 0}
 --- !u!1001 &2103398405234327059
 PrefabInstance:
   m_ObjectHideFlags: 0

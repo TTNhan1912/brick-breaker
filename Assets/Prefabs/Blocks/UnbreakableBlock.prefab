@@ -99,6 +99,9 @@ MonoBehaviour:
   soundVolume: 0.2
   destroyedBlockParticlesVFX: {fileID: 4668744615842279802, guid: 763fbccf87ffe4cab81bb6cf610ab765,
     type: 3}
+  maxHits: 0
+  damageSprites: []
+  dropManager: {fileID: 0}
 --- !u!61 &8946811745996912619
 BoxCollider2D:
   m_ObjectHideFlags: 0
