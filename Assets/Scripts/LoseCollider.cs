@@ -26,10 +26,6 @@ public class LoseCollider : MonoBehaviour
 
         }
 
-        //  if (other.gameObject.CompareTag("ItemDrop"))
-        //  {
-
-        //  }
 
     }
 

@@ -38,11 +38,6 @@ public class LevelController : MonoBehaviour
             {
                 _sceneLoader.LoadSceneByName(GAME_OVER_SCENE_NAME);
             }
-
-            // int level = PlayerPrefs.GetInt("level");
-            // level++;
-
-
             var nextLevel = ++loadDataLevel.levelScene;
             var maxLevel = PlayerPrefs.GetInt("LevelCurrent");
             if (nextLevel > maxLevel)
