@@ -6,6 +6,7 @@ public class LevelController : MonoBehaviour
     private readonly int NUMBER_OF_GAME_LEVELS = 40;
 
     public LoadDataLevel loadDataLevel;
+
     public Ball ball;
 
     // UI elements
@@ -41,12 +42,17 @@ public class LevelController : MonoBehaviour
             // int level = PlayerPrefs.GetInt("level");
             // level++;
 
-            loadDataLevel.levelScene++;
-            PlayerPrefs.SetInt("Level-Scene", loadDataLevel.levelScene);
+
+            var nextLevel = ++loadDataLevel.levelScene;
+            var maxLevel = PlayerPrefs.GetInt("LevelCurrent");
+            if (nextLevel > maxLevel)
+            {
+                PlayerPrefs.SetInt("LevelCurrent", nextLevel);
+            }
+            PlayerPrefs.SetInt("LevelData", nextLevel);
+            ball.FixBallOnTopOfPaddle(new Vector2(5.5f, -0.5f), new Vector2(-0.1f, 0.9f));
             loadDataLevel.CheckData();
-            ball.FixBallOnTopOfPaddle(new Vector2(8.7f, 0.6f), new Vector2(-0.1f, 0.9f));
-            ball.InitialBallSpeed = new Vector2(0, 0);
-            Debug.Log(ball.InitialBallSpeed);
+
         }
 
 

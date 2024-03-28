@@ -1,12 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOverMenuSelector : VerticalMenuSelector
 {
     private readonly string MENU_OPTION_GO_AGAIN = "MenuOptionGoAgain";
 
+    [SerializeField] private LoadDataLevel loadDataLevel;
+
     /**
+     *
      * Before first frame update. 
      */
     void Start()
@@ -21,11 +23,11 @@ public class GameOverMenuSelector : VerticalMenuSelector
     {
         // invokes base class up/down arrows handling
         this.HandleUpDownArrowPresses();
-        
+
         // enter case handling
         if (Input.GetKeyDown(KeyCode.Return)) HandleReturn();
     }
-    
+
     /**
      * Handles ENTER pressing that allows the user to choose an option.
      */
@@ -33,9 +35,11 @@ public class GameOverMenuSelector : VerticalMenuSelector
     {
         GameObject currentMenu = this.GetCurrentMenu();
 
-        if (currentMenu.name == this.MENU_OPTION_GO_AGAIN) 
-            this.sceneLoader.LoadStartScene();
-        else 
-            this.sceneLoader.Quit();
+        if (currentMenu.name == this.MENU_OPTION_GO_AGAIN)
+        {
+            SceneManager.LoadScene(3);
+        }
+        else
+            SceneManager.LoadScene(0);
     }
 }

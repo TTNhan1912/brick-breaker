@@ -2,32 +2,26 @@
 using System.Linq;
 using UnityEngine;
 
+
 public class LoadDataLevel : MonoBehaviour
 {
-    public GameObject blockBreak;
-    public GameObject blockHit1;
-    public GameObject blockHit2;
     public GameSessionLoader gameSessionLoader;
 
-    public Transform spamBlock;
+    public GameSession gameSession;
 
     public int blockLevel;
 
     public int levelScene;
 
-
-
     void Start()
     {
-        // LoadBlockLevel();
-        //LoadDataLiveAndSpeed();
         CheckLevel();
     }
 
     public void CheckLevel()
     {
-        levelScene = PlayerPrefs.GetInt("Level-Scene");
-        Debug.Log("Level Current : " + levelScene);
+        levelScene = PlayerPrefs.GetInt("LevelData");
+        Debug.Log("Level Current : " + PlayerPrefs.GetInt("LevelCurrent"));
         CheckData();
     }
 
@@ -43,6 +37,7 @@ public class LoadDataLevel : MonoBehaviour
         TextAsset dataLevel1 = Resources.Load<TextAsset>("level" + levelScene);
 
         string[] data = dataLevel1.text.Split(new char[] { '\n' });
+
         for (int i = 1; i <= 6; i++)
         {
             string[] row = data[i].Split(new char[] { ',' });
@@ -80,7 +75,6 @@ public class LoadDataLevel : MonoBehaviour
                             newBlock2.SetActive(true);
                             blockLevel++;
                         }
-
                         break;
                     default:
                         break;
@@ -92,12 +86,12 @@ public class LoadDataLevel : MonoBehaviour
             }
 
         }
+
+
     }
 
     public void LoadDataLiveAndSpeed()
     {
-        int levelcurrent = PlayerPrefs.GetInt("Level-Scene");
-
         TextAsset dataLevel1 = Resources.Load<TextAsset>("level" + levelScene);
         string[] data = dataLevel1.text.Split(new char[] { '\n' });
 
@@ -107,8 +101,7 @@ public class LoadDataLevel : MonoBehaviour
 
         float speed = float.Parse(data2[1], culture);
 
-        gameSessionLoader.StartGameSession2(live, speed, levelcurrent);
-
+        gameSessionLoader.StartGameSession2(live, speed, levelScene);
 
     }
 

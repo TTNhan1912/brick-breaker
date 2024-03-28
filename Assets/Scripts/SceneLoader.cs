@@ -22,7 +22,7 @@ public class SceneLoader : MonoBehaviour
     public void LoadStartScene()
     {
         // FindObjectOfType<GameState>().ResetState();
-        int level = PlayerPrefs.GetInt("Level-Scene");
+        int level = PlayerPrefs.GetInt("LevelCurrent");
 
         SceneManager.LoadScene(level);
     }
@@ -37,7 +37,7 @@ public class SceneLoader : MonoBehaviour
      */
     public void Start()
     {
-        Cursor.visible = false;
+        // Cursor.visible = false;
 
     }
 

@@ -1,13 +1,17 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameSession : MonoBehaviour
 {
     // config
-    [SerializeField] private TextMeshProUGUI playerScoreText;
-    [SerializeField] private TextMeshProUGUI gameLevelText;
-    [SerializeField] private TextMeshProUGUI playerLivesText;
+    [SerializeField] public TextMeshProUGUI playerScoreText;
+    [SerializeField] public TextMeshProUGUI gameLevelText;
+    [SerializeField] public TextMeshProUGUI playerLivesText;
 
+    [SerializeField] private Button back;
+    [SerializeField] private LoadDataLevel loadDataLevel;
     public Paddle paddle;
     private float timeScale;
     private float timeSlowSpeed;
@@ -17,6 +21,7 @@ public class GameSession : MonoBehaviour
 
     private bool isLowSpeed;
     private bool isLowSpeed5s;
+    private bool isEndScale;
     // state
     private static GameSession _instance;
     public static GameSession Instance => _instance;
@@ -42,10 +47,11 @@ public class GameSession : MonoBehaviour
 
         // first instance should be kept and do NOT destroy it on load
         _instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        // DontDestroyOnLoad(this.gameObject);
 
         isLowSpeed = true;
         isLowSpeed5s = true;
+        isEndScale = true;
 
     }
 
@@ -56,7 +62,10 @@ public class GameSession : MonoBehaviour
     {
         playerScoreText.text = this.PlayerScore.ToString();
         gameLevelText.text = this.GameLevel.ToString();
-        playerLivesText.text = this.PlayerLives.ToString();
+        //  playerLivesText.text = this.PlayerLives.ToString();
+        loadDataLevel.LoadDataLiveAndSpeed();
+        back.onClick.AddListener(BackSceneStart);
+        loadDataLevel.CheckData();
     }
 
     /**
@@ -66,11 +75,16 @@ public class GameSession : MonoBehaviour
     {
         Time.timeScale = this.GameSpeed;
 
-        if (Time.time >= timeScale)
+        if (!isEndScale)
         {
-            EndScale();
+            if (Time.time >= timeScale)
+            {
+                EndScale();
+                isEndScale = true;
+            }
         }
-        if (isLowSpeed5s)
+
+        if (!isLowSpeed5s)
         {
             if (Time.time >= timeSlowSpeed - 5)
             {
@@ -105,6 +119,7 @@ public class GameSession : MonoBehaviour
         timeScale = Time.time + 10;
         paddle.maxRelativePosX = 14;
         paddle.minRelativePosX = 2;
+        isEndScale = false;
     }
 
     private void EndScale()
@@ -135,13 +150,18 @@ public class GameSession : MonoBehaviour
         slowSpeed = speed * (stackSlow / 10f);
         this.GameSpeed -= slowSpeed;
         isLowSpeed = false;
-        isLowSpeed5s = true;
+        isLowSpeed5s = false;
     }
 
     public void Cancel()
     {
         EndScale();
         this.GameSpeed = 0.7f;
+    }
+
+    public void BackSceneStart()
+    {
+        SceneManager.LoadScene(0);
     }
 
 }

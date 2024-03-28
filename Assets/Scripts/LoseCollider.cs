@@ -23,7 +23,7 @@ public class LoseCollider : MonoBehaviour
             // deduces a game life from the player
             gameSession.PlayerLives--;
             FixBallOnPaddleAfterLoss();
-            Debug.Log("LoseCollider - Trigger Ball ");
+
         }
 
         //  if (other.gameObject.CompareTag("ItemDrop"))

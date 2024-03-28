@@ -1,13 +1,15 @@
-﻿using UnityEngine;
-public class ItemBottle : Item
+﻿public class ItemBottle : Item
 {
     public override void ApplyEffect()
     {
-        Debug.Log(4);
+
 
         GameSession.Instance.Cancel();
 
         Destroy(gameObject);
     }
-
+    public override void Start()
+    {
+        base.Start();
+    }
 }

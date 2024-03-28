@@ -8,5 +8,8 @@
         Destroy(gameObject);
     }
 
-
+    public override void Start()
+    {
+        base.Start();
+    }
 }

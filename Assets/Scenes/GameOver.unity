@@ -803,6 +803,7 @@ MonoBehaviour:
   - {fileID: 1912173705}
   - {fileID: 1031824253}
   sceneLoader: {fileID: 443413281}
+  loadDataLevel: {fileID: 0}
 --- !u!1 &1522558768
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,8 +952,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 55.595413, y: 7.110407}
-  m_SizeDelta: {x: 147.98, y: 18.47}
+  m_AnchoredPosition: {x: 169, y: -7}
+  m_SizeDelta: {x: 247.7, y: 27.3}
   m_Pivot: {x: 0.4999999, y: 0.49999952}
 --- !u!114 &1912173707
 MonoBehaviour:

@@ -43,6 +43,8 @@ public class ObjectPool : MonoBehaviour
             listBlockHit2.Add(obj2);
             listBlockBlack.Add(obj3);
         }
+
+
     }
 
     public GameObject GetBlock1()

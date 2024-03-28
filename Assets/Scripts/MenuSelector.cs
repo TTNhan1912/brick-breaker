@@ -16,7 +16,7 @@ public class MenuSelector : VerticalMenuSelector
     {
         transform.position = GetMenuSelectorPosition();
 
-        Debug.Log("Level Current : " + PlayerPrefs.GetInt("Level-Scene"));
+        Debug.Log("Level : " + PlayerPrefs.GetInt("LevelCurrent"));
 
     }
 
@@ -40,7 +40,7 @@ public class MenuSelector : VerticalMenuSelector
         var currentMenu = this.GetCurrentMenu();
 
         if (currentMenu.name == MENU_OPTION_START)
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(2);
 
         else if (currentMenu.name == MENU_OPTION_INSTRUCTIONS)
             this.sceneLoader.LoadSceneByName("InstructionsMenu");

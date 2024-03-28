@@ -106,7 +106,7 @@ public class Block : MonoBehaviour
 
         //  Debug.Log("Destroy Block");
 
-        int index = Random.Range(0, 2);
+        int index = Random.Range(0, 10);
         if (index == 0)
         {
             ItemRanDome();

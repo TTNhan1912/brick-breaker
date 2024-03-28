@@ -139,6 +139,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0916807035f5b431a9f5e09fb1debd1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &700925942 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6606606348114552391, guid: b53834ee4edae2449b0f75b5a30a67a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8492122035883699121}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &782955142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -257,14 +269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b4d96f6617c5f40b32baf572234359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockBreak: {fileID: 8946811745996912623, guid: 95b29c3d187384d1c94f2fbc870e2465,
-    type: 3}
-  blockHit1: {fileID: 8946811745996912623, guid: b659bd4ff687548a09a031c2e989b540,
-    type: 3}
-  blockHit2: {fileID: 8946811745996912623, guid: 708d02db2e99e4c1bb378cc38d220c41,
-    type: 3}
   gameSessionLoader: {fileID: 697219427}
-  spamBlock: {fileID: 1001182227}
+  ball: {fileID: 1782237484}
   blockLevel: 0
   levelScene: 0
 --- !u!4 &867016144
@@ -321,6 +327,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7cde6ab6c863741428d51d120c18cca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1432987947 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3403296602217027694, guid: b53834ee4edae2449b0f75b5a30a67a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8492122035883699121}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdffcc71aeb1240b0b052797e4a9c49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1782237484 stripped
@@ -945,12 +963,12 @@ PrefabInstance:
     - target: {fileID: 8052374309985418513, guid: 47368a3e0f7a7473cba109fd03b37135,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.432
+      value: 5.54
       objectReference: {fileID: 0}
     - target: {fileID: 8052374309985418513, guid: 47368a3e0f7a7473cba109fd03b37135,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.474
+      value: 1.39
       objectReference: {fileID: 0}
     - target: {fileID: 8052374309985418513, guid: 47368a3e0f7a7473cba109fd03b37135,
         type: 3}
@@ -1061,6 +1079,16 @@ PrefabInstance:
       propertyPath: paddle
       value: 
       objectReference: {fileID: 1292535422}
+    - target: {fileID: 3403296602217027694, guid: b53834ee4edae2449b0f75b5a30a67a2,
+        type: 3}
+      propertyPath: back
+      value: 
+      objectReference: {fileID: 700925942}
+    - target: {fileID: 3403296602217027694, guid: b53834ee4edae2449b0f75b5a30a67a2,
+        type: 3}
+      propertyPath: loadDataLevel
+      value: 
+      objectReference: {fileID: 867016143}
     - target: {fileID: 3403296602217027695, guid: b53834ee4edae2449b0f75b5a30a67a2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1120,6 +1148,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameSession
+      objectReference: {fileID: 0}
+    - target: {fileID: 4708132494646205836, guid: b53834ee4edae2449b0f75b5a30a67a2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606606348114552391, guid: b53834ee4edae2449b0f75b5a30a67a2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606606348114552391, guid: b53834ee4edae2449b0f75b5a30a67a2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1432987947}
+    - target: {fileID: 6606606348114552391, guid: b53834ee4edae2449b0f75b5a30a67a2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackSceneStart
       objectReference: {fileID: 0}
     - target: {fileID: 8492122037295837807, guid: b53834ee4edae2449b0f75b5a30a67a2,
         type: 3}
