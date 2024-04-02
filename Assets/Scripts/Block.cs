@@ -18,7 +18,7 @@ public class Block : MonoBehaviour
     private Vector3 _soundPosition;
 
     // state
-    private int _currentHits = 0;
+    public int _currentHits = 0;
 
     void Start()
     {
@@ -133,6 +133,7 @@ public class Block : MonoBehaviour
         AudioSource.PlayClipAtPoint(destroyedBlockSound, _soundPosition, soundVolume);
         //  Destroy(this.gameObject);
         gameObject.SetActive(false);
+        gameObject.GetComponent<Block>().maxHits = maxHits;
     }
 
     /**

@@ -71,7 +71,9 @@ public class ObjectPool : MonoBehaviour
         {
             if (!listBlockHit2[i].activeInHierarchy)
             {
+                listBlockHit2[i].GetComponent<Block>()._currentHits = 0;
                 return listBlockHit2[i];
+
             }
         }
 
